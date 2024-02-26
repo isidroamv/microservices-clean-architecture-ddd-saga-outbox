@@ -1,6 +1,7 @@
 package org.food.ordering.system.order.service.domain.ports;
 
 import lombok.extern.slf4j.Slf4j;
+import org.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
 import org.food.ordering.system.order.service.domain.dto.create.CreateOrderResponse;
 import org.food.ordering.system.order.service.domain.dto.track.TrackOrderQuery;
 import org.food.ordering.system.order.service.domain.dto.track.TrackOrderResponse;
@@ -22,8 +23,8 @@ class OrderApplicationServiceImpl implements OrderApplicationService {
     }
 
     @Override
-    public CreateOrderResponse createOrder(CreateOrderResponse createOrderCommand) {
-        return orderCreateCommandHandler.createOrder(createOrderCommand);
+    public CreateOrderResponse createOrder(CreateOrderCommand createOrderCommand) {
+        return orderCreateCommandHandler.persisOrder(createOrderCommand);
     }
 
     @Override

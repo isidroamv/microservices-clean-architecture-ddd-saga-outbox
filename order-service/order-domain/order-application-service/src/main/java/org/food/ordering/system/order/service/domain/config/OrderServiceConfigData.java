@@ -1,2 +1,15 @@
-package org.food.ordering.system.order.service.domain.config;public class OrderServiceConfigData {
+package org.food.ordering.system.order.service.domain.config;
+
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
+@Data
+@Configuration
+@ConfigurationProperties(prefix = "order-services")
+public class OrderServiceConfigData {
+    private String paymentRequestTopicName;
+    private String paymentResponseTopicName;
+    private String restaurantApprovalRequestTopicName;
+    private String restaurantApprovalResponseTopicName;
 }

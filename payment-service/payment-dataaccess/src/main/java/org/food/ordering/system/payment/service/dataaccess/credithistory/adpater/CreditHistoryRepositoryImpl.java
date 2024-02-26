@@ -1,36 +1,42 @@
-package org.food.ordering.system.payment.service.dataaccess.creditentry.adpater;
+package org.food.ordering.system.payment.service.dataaccess.credithistory.adpater;
 
-import org.food.ordering.system.payment.service.dataaccess.creditentry.mapper.CreditEntryDataaccessMapper;
-import org.food.ordering.system.payment.service.dataaccess.creditentry.repository.CreditEntryJpaRepository;
-import org.food.ordering.system.payment.service.domain.entity.Payment;
-import org.ordering.system.payment.service.domain.ports.output.repository.PaymentRepository;
+import org.food.ordering.system.domain.valueobject.CustomerId;
+import org.food.ordering.system.payment.service.dataaccess.credithistory.mapper.CreditHistoryDataaccessMapper;
+import org.food.ordering.system.payment.service.dataaccess.credithistory.repository.CreditHistoryJpaRepository;
+import org.food.ordering.system.payment.service.domain.entity.CreditEntry;
+import org.food.ordering.system.payment.service.domain.entity.CreditHistory;
+import org.ordering.system.payment.service.domain.ports.output.repository.CreditEntryRepository;
+import org.ordering.system.payment.service.domain.ports.output.repository.CreditHistoryRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Component
-public class CreditEntryRepositoryImpl implements PaymentRepository {
-    private final CreditEntryJpaRepository creditEntryJpaRepository;
-    private final CreditEntryDataaccessMapper creditEntryDataaccessMapper;
+public class CreditHistoryRepositoryImpl implements CreditHistoryRepository {
+    private final CreditHistoryJpaRepository creditHistoryJpaRepository;
+    private final CreditHistoryDataaccessMapper creditHistoryDataaccessMapper;
 
-    public CreditEntryRepositoryImpl(CreditEntryJpaRepository creditEntryJpaRepository,
-                                     CreditEntryDataaccessMapper creditEntryDataaccessMapper) {
-        this.creditEntryJpaRepository = creditEntryJpaRepository;
-        this.creditEntryDataaccessMapper = creditEntryDataaccessMapper;
+    public CreditHistoryRepositoryImpl(CreditHistoryJpaRepository creditHistoryJpaRepository,
+                                       CreditHistoryDataaccessMapper creditHistoryDataaccessMapper) {
+        this.creditHistoryJpaRepository = creditHistoryJpaRepository;
+        this.creditHistoryDataaccessMapper = creditHistoryDataaccessMapper;
     }
 
 
     @Override
-    public Payment save(Payment payment) {
-        return creditEntryDataaccessMapper
-                .paymentEntityToPayment(creditEntryJpaRepository
-                        .save(creditEntryDataaccessMapper.paymentToPaymentEntity(payment)));
+    public CreditHistory save(CreditHistory creditHistory) {
+        return creditHistoryDataaccessMapper
+                .creditHistoryEntityToCreditHistory(creditHistoryJpaRepository
+                        .save(creditHistoryDataaccessMapper.creditHistoryToCreditHistoryEntity(creditHistory)));
     }
 
     @Override
-    public Optional<Payment> findByOrderId(UUID orderId) {
-        return creditEntryJpaRepository.findByOrderId(orderId)
-                .map(creditEntryDataaccessMapper::paymentEntityToPayment);
+    public Optional<List<CreditHistory>> findByCustomerId(CustomerId customerId) {
+        return creditHistoryJpaRepository.findByCustomerId(customerId.getValue())
+                .map(creditHistoryEntities ->
+                        creditHistoryEntities.stream()
+                                .map(creditHistoryDataaccessMapper::creditHistoryEntityToCreditHistory)
+                                .toList());
     }
 }

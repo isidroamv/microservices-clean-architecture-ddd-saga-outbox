@@ -17,8 +17,8 @@
             <artifactId>common-domain</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.food.ordering.system</groupId>
-            <artifactId>common-domain</artifactId>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
         </dependency>
     </dependencies>
 

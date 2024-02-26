@@ -1,8 +1,11 @@
-package org.food.ordering.system.payment.service.dataaccess.creditentry.payment.adpater;
+package org.food.ordering.system.payment.service.dataaccess.creditentry.adpater;
 
-import org.food.ordering.system.payment.service.dataaccess.creditentry.payment.mapper.CreditEntryDataaccessMapper;
-import org.food.ordering.system.payment.service.dataaccess.creditentry.payment.repository.PaymentJpaRepository;
+import org.food.ordering.system.domain.valueobject.CustomerId;
+import org.food.ordering.system.payment.service.dataaccess.creditentry.mapper.CreditEntryDataaccessMapper;
+import org.food.ordering.system.payment.service.dataaccess.creditentry.repository.CreditEntryJpaRepository;
+import org.food.ordering.system.payment.service.domain.entity.CreditEntry;
 import org.food.ordering.system.payment.service.domain.entity.Payment;
+import org.ordering.system.payment.service.domain.ports.output.repository.CreditEntryRepository;
 import org.ordering.system.payment.service.domain.ports.output.repository.PaymentRepository;
 import org.springframework.stereotype.Component;
 
@@ -10,27 +13,28 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Component
-public class PaymentRepositoryImpl implements PaymentRepository {
-    private final PaymentJpaRepository paymentJpaRepository;
+public class CreditEntryRepositoryImpl implements CreditEntryRepository {
+    private final CreditEntryJpaRepository creditEntryJpaRepository;
     private final CreditEntryDataaccessMapper creditEntryDataaccessMapper;
 
-    public PaymentRepositoryImpl(PaymentJpaRepository paymentJpaRepository,
-                                 CreditEntryDataaccessMapper creditEntryDataaccessMapper) {
-        this.paymentJpaRepository = paymentJpaRepository;
+    public CreditEntryRepositoryImpl(CreditEntryJpaRepository creditEntryJpaRepository,
+                                     CreditEntryDataaccessMapper creditEntryDataaccessMapper) {
+        this.creditEntryJpaRepository = creditEntryJpaRepository;
         this.creditEntryDataaccessMapper = creditEntryDataaccessMapper;
     }
 
 
     @Override
-    public Payment save(Payment payment) {
+    public CreditEntry save(CreditEntry creditEntry) {
         return creditEntryDataaccessMapper
-                .paymentEntityToPayment(paymentJpaRepository
-                        .save(creditEntryDataaccessMapper.paymentToPaymentEntity(payment)));
+                .creditEntryEntityToCreditEntry(creditEntryJpaRepository
+                        .save(creditEntryDataaccessMapper.creditEntryToCreditEntryEntity(creditEntry)));
     }
 
     @Override
-    public Optional<Payment> findByOrderId(UUID orderId) {
-        return paymentJpaRepository.findByOrderId(orderId)
-                .map(creditEntryDataaccessMapper::paymentEntityToPayment);
+    public Optional<CreditEntry> findByCustomerId(CustomerId customerId) {
+        return creditEntryJpaRepository.findByOrderId(customerId.getValue())
+                .map(creditEntryDataaccessMapper::creditEntryEntityToCreditEntry);
     }
+
 }

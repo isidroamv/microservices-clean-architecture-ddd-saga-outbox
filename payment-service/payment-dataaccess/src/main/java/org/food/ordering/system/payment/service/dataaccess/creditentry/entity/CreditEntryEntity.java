@@ -1,11 +1,9 @@
-package org.food.ordering.system.payment.service.dataaccess.creditentry.payment.entity;
+package org.food.ordering.system.payment.service.dataaccess.creditentry.entity;
 
 import lombok.*;
-import org.food.ordering.system.domain.valueobject.PaymentStatus;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
