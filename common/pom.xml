@@ -11,4 +11,9 @@
 
     <artifactId>common</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>common-dataaccess</module>
+        <module>common-application</module>
+        <module>common-domain</module>
+    </modules>
 </project>

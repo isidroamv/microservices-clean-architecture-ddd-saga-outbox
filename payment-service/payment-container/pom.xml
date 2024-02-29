@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.food.ordering.system</groupId>
-        <artifactId>food-ordering-system</artifactId>
+        <artifactId>payment-service</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
@@ -15,10 +15,10 @@
             <groupId>org.food.ordering.system</groupId>
             <artifactId>payment-domain-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.food.ordering.system</groupId>
-            <artifactId>payment-application-service</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.food.ordering.system</groupId>-->
+<!--            <artifactId>payment-application-service</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.food.ordering.system</groupId>
             <artifactId>payment-dataaccess</artifactId>
