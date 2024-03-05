@@ -1,6 +1,6 @@
 package org.food.ordering.system.order.service.messaging.publisher.kafka;
 
-import com.food.ordering.system.kafka.order.avro.model.PaymentRequestAvroModel;
+import org.food.ordering.system.kafka.order.avro.model.PaymentRequestAvroModel;
 import lombok.extern.slf4j.Slf4j;
 import org.food.ordering.system.kafka.producer.KafkaMessageHelper;
 import org.food.ordering.system.kafka.producer.service.KafkaProducer;
@@ -8,9 +8,7 @@ import org.food.ordering.system.order.service.domain.config.OrderServiceConfigDa
 import org.food.ordering.system.order.service.domain.event.OrderCancelledEvent;
 import org.food.ordering.system.order.service.domain.ports.output.message.publisher.payment.OrderCancelledPaymentRequestMessagePublisher;
 import org.food.ordering.system.order.service.messaging.mapper.OrderMessagingDataMapper;
-import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 
 @Slf4j
 @Component

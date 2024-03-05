@@ -1,6 +1,6 @@
 package org.food.ordering.system.restaurant.service.messaging.publisher.kafka;
 
-import com.food.ordering.system.kafka.order.avro.model.RestaurantApprovalResponseAvroModel;
+import org.food.ordering.system.kafka.order.avro.model.RestaurantApprovalResponseAvroModel;
 import lombok.extern.slf4j.Slf4j;
 import org.food.ordering.system.kafka.producer.KafkaMessageHelper;
 import org.food.ordering.system.kafka.producer.service.KafkaProducer;

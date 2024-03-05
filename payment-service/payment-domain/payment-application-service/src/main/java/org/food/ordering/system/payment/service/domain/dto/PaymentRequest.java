@@ -1,4 +1,4 @@
-package org.ordering.system.payment.service.domain.dto;
+package org.food.ordering.system.payment.service.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

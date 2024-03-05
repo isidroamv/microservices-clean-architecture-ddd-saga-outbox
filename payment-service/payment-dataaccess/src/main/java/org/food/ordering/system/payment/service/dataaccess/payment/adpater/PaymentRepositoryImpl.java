@@ -3,8 +3,7 @@ package org.food.ordering.system.payment.service.dataaccess.payment.adpater;
 import org.food.ordering.system.payment.service.dataaccess.payment.mapper.PaymentDataaccessMapper;
 import org.food.ordering.system.payment.service.dataaccess.payment.repository.PaymentJpaRepository;
 import org.food.ordering.system.payment.service.domain.entity.Payment;
-import org.ordering.system.payment.service.domain.ports.output.repository.PaymentRepository;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.food.ordering.system.payment.service.domain.ports.output.repository.PaymentRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

@@ -1,16 +1,9 @@
-package org.ordering.system.payment.service.domain;
+package org.food.ordering.system.payment.service.domain;
 
 import lombok.extern.slf4j.Slf4j;
-import org.food.ordering.system.payment.service.domain.event.PaymentCancelledEvent;
-import org.food.ordering.system.payment.service.domain.event.PaymentCompletedEvent;
 import org.food.ordering.system.payment.service.domain.event.PaymentEvent;
-import org.food.ordering.system.payment.service.domain.event.PaymentFailedEvent;
-import org.ordering.system.payment.service.domain.dto.PaymentRequest;
-import org.ordering.system.payment.service.domain.ports.input.message.listener.PaymentRequestMessageListener;
-import org.ordering.system.payment.service.domain.ports.output.message.publisher.PaymentCancelledMessagePublisher;
-import org.ordering.system.payment.service.domain.ports.output.message.publisher.PaymentCompletedMessagePublisher;
-import org.ordering.system.payment.service.domain.ports.output.message.publisher.PaymentFailedMessagePublisher;
-import org.springframework.stereotype.Component;
+import org.food.ordering.system.payment.service.domain.dto.PaymentRequest;
+import org.food.ordering.system.payment.service.domain.ports.input.message.listener.PaymentRequestMessageListener;
 import org.springframework.stereotype.Service;
 
 @Slf4j

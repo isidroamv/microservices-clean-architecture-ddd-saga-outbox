@@ -1,22 +1,20 @@
-package org.ordering.system.payment.service.domain;
+package org.food.ordering.system.payment.service.domain;
 
 import lombok.extern.slf4j.Slf4j;
 import org.food.ordering.system.domain.valueobject.CustomerId;
-import org.food.ordering.system.payment.service.domain.PaymentDomainService;
 import org.food.ordering.system.payment.service.domain.entity.CreditEntry;
 import org.food.ordering.system.payment.service.domain.entity.CreditHistory;
 import org.food.ordering.system.payment.service.domain.entity.Payment;
-import org.food.ordering.system.payment.service.domain.event.PaymentCancelledEvent;
 import org.food.ordering.system.payment.service.domain.event.PaymentEvent;
-import org.ordering.system.payment.service.domain.dto.PaymentRequest;
-import org.ordering.system.payment.service.domain.exception.PaymentApplicationServiceException;
-import org.ordering.system.payment.service.domain.mapper.PaymentDataMapper;
-import org.ordering.system.payment.service.domain.ports.output.message.publisher.PaymentCancelledMessagePublisher;
-import org.ordering.system.payment.service.domain.ports.output.message.publisher.PaymentCompletedMessagePublisher;
-import org.ordering.system.payment.service.domain.ports.output.message.publisher.PaymentFailedMessagePublisher;
-import org.ordering.system.payment.service.domain.ports.output.repository.CreditEntryRepository;
-import org.ordering.system.payment.service.domain.ports.output.repository.CreditHistoryRepository;
-import org.ordering.system.payment.service.domain.ports.output.repository.PaymentRepository;
+import org.food.ordering.system.payment.service.domain.ports.output.message.publisher.PaymentFailedMessagePublisher;
+import org.food.ordering.system.payment.service.domain.dto.PaymentRequest;
+import org.food.ordering.system.payment.service.domain.exception.PaymentApplicationServiceException;
+import org.food.ordering.system.payment.service.domain.mapper.PaymentDataMapper;
+import org.food.ordering.system.payment.service.domain.ports.output.message.publisher.PaymentCancelledMessagePublisher;
+import org.food.ordering.system.payment.service.domain.ports.output.message.publisher.PaymentCompletedMessagePublisher;
+import org.food.ordering.system.payment.service.domain.ports.output.repository.CreditEntryRepository;
+import org.food.ordering.system.payment.service.domain.ports.output.repository.CreditHistoryRepository;
+import org.food.ordering.system.payment.service.domain.ports.output.repository.PaymentRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -99,7 +97,7 @@ public class PaymentRequestHelper {
                     customerId.getValue());
         }
 
-        return creditHistories.get();
+        return new ArrayList<>(creditHistories.get());
     }
 
     private CreditEntry getCreditEntry(CustomerId customerId) {

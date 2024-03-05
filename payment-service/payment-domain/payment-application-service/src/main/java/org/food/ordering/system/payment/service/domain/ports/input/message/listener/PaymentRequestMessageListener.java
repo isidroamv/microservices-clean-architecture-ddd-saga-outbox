@@ -1,6 +1,6 @@
-package org.ordering.system.payment.service.domain.ports.input.message.listener;
+package org.food.ordering.system.payment.service.domain.ports.input.message.listener;
 
-import org.ordering.system.payment.service.domain.dto.PaymentRequest;
+import org.food.ordering.system.payment.service.domain.dto.PaymentRequest;
 
 public interface PaymentRequestMessageListener {
     void completePayment(PaymentRequest paymentRequest);

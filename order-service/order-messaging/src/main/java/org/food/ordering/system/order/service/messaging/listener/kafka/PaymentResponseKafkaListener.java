@@ -1,9 +1,10 @@
 package org.food.ordering.system.order.service.messaging.listener.kafka;
 
-import com.food.ordering.system.kafka.order.avro.model.PaymentResponseAvroModel;
-import com.food.ordering.system.kafka.order.avro.model.PaymentStatus;
+import org.food.ordering.system.kafka.order.avro.model.PaymentResponseAvroModel;
+import org.food.ordering.system.kafka.order.avro.model.PaymentStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.food.ordering.system.kafka.consumer.KafkaConsumer;
+import org.food.ordering.system.order.service.domain.dto.message.PaymentResponse;
 import org.food.ordering.system.order.service.domain.ports.input.message.listener.payment.PaymentResponseMessageListener;
 import org.food.ordering.system.order.service.messaging.mapper.OrderMessagingDataMapper;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -44,8 +45,9 @@ public class PaymentResponseKafkaListener implements KafkaConsumer<PaymentRespon
         message.forEach(paymentResponseAvroModel -> {
             if (PaymentStatus.COMPLETED == paymentResponseAvroModel.getPaymentStatus()) {
                 log.info("Processing payment completed event for order id: {}", paymentResponseAvroModel.getOrderId());
-                paymentResponseMessageListener.paymentCompleted(orderMessagingDataMapper
-                        .paymentResponseAvroModelToPaymentResponse(paymentResponseAvroModel));
+                PaymentResponse paymentResponse = orderMessagingDataMapper
+                        .paymentResponseAvroModelToPaymentResponse(paymentResponseAvroModel);
+                paymentResponseMessageListener.paymentCompleted(paymentResponse);
             } else if (PaymentStatus.CANCELLED == paymentResponseAvroModel.getPaymentStatus() ||
                     PaymentStatus.FAILED == paymentResponseAvroModel.getPaymentStatus()) {
                 log.info("Processing payment cancelled event for order id: {}", paymentResponseAvroModel.getOrderId());

@@ -1,7 +1,7 @@
 package org.food.ordering.system.order.service.messaging.publisher.kafka;
 
 
-import com.food.ordering.system.kafka.order.avro.model.PaymentRequestAvroModel;
+import org.food.ordering.system.kafka.order.avro.model.PaymentRequestAvroModel;
 import lombok.extern.slf4j.Slf4j;
 import org.food.ordering.system.kafka.producer.KafkaMessageHelper;
 import org.food.ordering.system.kafka.producer.service.KafkaProducer;

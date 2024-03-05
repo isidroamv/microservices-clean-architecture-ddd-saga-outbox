@@ -19,6 +19,10 @@
             <groupId>org.food.ordering.system</groupId>
             <artifactId>order-domain-core</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.food.ordering.system</groupId>
+            <artifactId>saga</artifactId>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.food.ordering.system</groupId>-->
 <!--            <artifactId>common-domain</artifactId>-->
@@ -41,7 +45,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-<!--        <dependency>-->
+        <dependency>
+            <groupId>org.food.ordering.system</groupId>
+            <artifactId>common-domain</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!--        <dependency>-->
 <!--            <groupId>org.food.ordering.system</groupId>-->
 <!--            <artifactId>order-domain</artifactId>-->
 <!--            <version>1.0-SNAPSHOT</version>-->

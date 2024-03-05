@@ -1,7 +1,6 @@
-package org.food.ordering.system.order.service.domain.ports;
+package org.food.ordering.system.order.service.domain;
 
 import lombok.extern.slf4j.Slf4j;
-import org.food.ordering.system.order.service.domain.OrderDomainService;
 import org.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
 import org.food.ordering.system.order.service.domain.entity.Customer;
 import org.food.ordering.system.order.service.domain.entity.Order;
@@ -45,7 +44,7 @@ public class OrderCreateHelper {
     }
 
     @Transactional
-    public OrderCreatedEvent persisOrder(CreateOrderCommand createOrderCommand) {
+    public OrderCreatedEvent persistOrder(CreateOrderCommand createOrderCommand) {
         checkCustomer(createOrderCommand.getCustomerId());
         Restaurant restaurant = checkRestaurant(createOrderCommand);
         Order order = orderDataMapper.createOrderCommandToOrder(createOrderCommand);
@@ -60,9 +59,9 @@ public class OrderCreateHelper {
         Restaurant restaurant = orderDataMapper.createOrderCommandToRestaurant(createOrderCommand);
         Optional<Restaurant> optionalRestaurant = restaurantRepository.findRestaurantInformation(restaurant);
         if (optionalRestaurant.isEmpty()) {
-            log.warn("Could not find restaurant with id " + createOrderCommand.getRestaurantId());
-            throw new OrderDomainException("Could not find restaurant with id "
-                    + createOrderCommand.getRestaurantId());
+            log.warn("Could not find restaurant with restaurant id: {}", createOrderCommand.getRestaurantId());
+            throw new OrderDomainException("Could not find restaurant with restaurant id: " +
+                    createOrderCommand.getRestaurantId());
         }
         return optionalRestaurant.get();
     }
@@ -78,10 +77,10 @@ public class OrderCreateHelper {
     private Order saveOrder(Order order) {
         Order orderResult = orderRepository.save(order);
         if (orderResult == null) {
-            log.error("Could not save order " + order.getId().getValue());
-            throw new OrderDomainException("Could not save order " + order.getId().getValue());
+            log.error("Could not save order!");
+            throw new OrderDomainException("Could not save order!");
         }
-        log.info("Order with id: {} saved successfully", order.getId().getValue());
+        log.info("Order is saved with id: {}", orderResult.getId().getValue());
         return orderResult;
     }
 }

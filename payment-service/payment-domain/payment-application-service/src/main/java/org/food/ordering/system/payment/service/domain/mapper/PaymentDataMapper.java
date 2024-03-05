@@ -1,11 +1,10 @@
-package org.ordering.system.payment.service.domain.mapper;
+package org.food.ordering.system.payment.service.domain.mapper;
 
 import org.food.ordering.system.domain.valueobject.CustomerId;
 import org.food.ordering.system.domain.valueobject.Money;
 import org.food.ordering.system.domain.valueobject.OrderId;
+import org.food.ordering.system.payment.service.domain.dto.PaymentRequest;
 import org.food.ordering.system.payment.service.domain.entity.Payment;
-import org.food.ordering.system.payment.service.domain.event.PaymentEvent;
-import org.ordering.system.payment.service.domain.dto.PaymentRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

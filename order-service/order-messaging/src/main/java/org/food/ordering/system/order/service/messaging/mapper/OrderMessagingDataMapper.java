@@ -1,7 +1,7 @@
 package org.food.ordering.system.order.service.messaging.mapper;
 
-import com.food.ordering.system.kafka.order.avro.model.*;
 import org.food.ordering.system.domain.valueobject.PaymentStatus;
+import org.food.ordering.system.kafka.order.avro.model.*;
 import org.food.ordering.system.order.service.domain.dto.message.PaymentResponse;
 import org.food.ordering.system.order.service.domain.dto.message.RestaurantApprovalResponse;
 import org.food.ordering.system.order.service.domain.entity.Order;
@@ -19,7 +19,7 @@ public class OrderMessagingDataMapper {
         return PaymentRequestAvroModel.newBuilder()
                 .setId(UUID.randomUUID().toString())
                 .setSagaId("")
-                .setCustomerId(order.getCustomerId().toString())
+                .setCustomerId(order.getCustomerId().getValue().toString())
                 .setOrderId(order.getId().getValue().toString())
                 .setPrice(order.getPrice().getAmount())
                 .setCreatedAt(orderCreatedEvent.getCreatedAt().toInstant())
@@ -32,7 +32,7 @@ public class OrderMessagingDataMapper {
         return PaymentRequestAvroModel.newBuilder()
                 .setId(UUID.randomUUID().toString())
                 .setSagaId("")
-                .setCustomerId(order.getCustomerId().toString())
+                .setCustomerId(order.getCustomerId().getValue().toString())
                 .setOrderId(order.getId().getValue().toString())
                 .setPrice(order.getPrice().getAmount())
                 .setCreatedAt(orderCancelledEvent.getCreatedAt().toInstant())
@@ -45,7 +45,7 @@ public class OrderMessagingDataMapper {
         return PaymentRequestAvroModel.newBuilder()
                 .setId(UUID.randomUUID().toString())
                 .setSagaId("")
-                .setCustomerId(order.getCustomerId().toString())
+                .setCustomerId(order.getCustomerId().getValue().toString())
                 .setOrderId(order.getId().getValue().toString())
                 .setPrice(order.getPrice().getAmount())
                 .setCreatedAt(orderCancelledEvent.getCreatedAt().toInstant())
@@ -88,8 +88,20 @@ public class OrderMessagingDataMapper {
                 .build();
     }
 
-    public RestaurantApprovalResponse restaurantApprovalResponseAvroModelToRestaurantApprovalResponse(
-            RestaurantApprovalResponseAvroModel paymentResponseAvroModel) {
-        return RestaurantApprovalResponse.builder().build();
+    public RestaurantApprovalResponse
+    restaurantApprovalResponseAvroModelToRestaurantApprovalResponse(RestaurantApprovalResponseAvroModel
+                                                        restaurantApprovalResponseAvroModel) {
+        return RestaurantApprovalResponse.builder()
+                .id(restaurantApprovalResponseAvroModel.getId())
+                .sagaId(restaurantApprovalResponseAvroModel.getSagaId())
+                .restaurantId(restaurantApprovalResponseAvroModel.getRestaurantId())
+                .orderId(restaurantApprovalResponseAvroModel.getOrderId())
+                .createdAt(restaurantApprovalResponseAvroModel.getCreatedAt())
+                .orderApprovalStatus(org.food.ordering.system.domain.valueobject.OrderApprovalStatus.valueOf(
+                        restaurantApprovalResponseAvroModel.getOrderApprovalStatus().name()))
+                .failureMessages(restaurantApprovalResponseAvroModel.getFailureMessages())
+                .build();
     }
+
+
 }

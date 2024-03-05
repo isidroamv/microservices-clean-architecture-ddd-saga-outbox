@@ -43,7 +43,7 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
             return new PaymentCompletedEvent(
                     payment, ZonedDateTime.now(ZoneId.of(UTC)), paymentCompletedEventDomainEventPublisher);
         } else {
-            log.error("Payment initiation failed");
+            log.error("Payment initiation failed with failure message: {}", String.join(", ", failureMessages));
             payment.updatePaymentStatus(PaymentStatus.FAILED);
             return new PaymentFailedEvent(payment, ZonedDateTime.now(
                     ZoneId.of(UTC)), failureMessages, paymentFailedEventDomainEventPublisher);
@@ -86,6 +86,7 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
     private void updateCreditHistory(List<CreditHistory> creditHistories,
                                      Payment payment,
                                      TransactionType transactionType) {
+
         creditHistories.add(CreditHistory.builder()
                 .creditHistoryId(new CreditHistoryId(UUID.randomUUID()))
                 .customerId(payment.getCustomerId())
@@ -102,12 +103,12 @@ public class PaymentDomainServiceImpl implements PaymentDomainService {
         Money totalCreditHistory = getTotalCreditAmount(creditHistories, TransactionType.CREDIT);
         Money totalDebitHistory = getTotalCreditAmount(creditHistories, TransactionType.DEBIT);
 
-        if (totalCreditHistory.isGreaterThan(creditEntry.getTotalCreditAmount())) {
+        if (totalDebitHistory.isGreaterThan(totalCreditHistory)) {
             log.error("Insufficient credit history");
             failureMessages.add("Insufficient credit history");
         }
 
-        if (!creditEntry.getTotalCreditAmount().equals(totalDebitHistory.subtract(totalDebitHistory))) {
+        if (!creditEntry.getTotalCreditAmount().equals(totalCreditHistory.subtract(totalDebitHistory))) {
             log.error("Credit history mismatch");
             failureMessages.add("Credit history mismatch");
         }

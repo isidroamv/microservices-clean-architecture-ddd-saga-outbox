@@ -1,4 +1,4 @@
-package org.food.ordering.system.order.service.domain.ports;
+package org.food.ordering.system.order.service.domain;
 
 import lombok.extern.slf4j.Slf4j;
 import org.food.ordering.system.order.service.domain.dto.track.TrackOrderQuery;

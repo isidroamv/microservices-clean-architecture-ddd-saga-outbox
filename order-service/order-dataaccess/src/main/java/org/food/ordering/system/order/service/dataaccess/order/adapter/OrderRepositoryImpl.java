@@ -1,5 +1,7 @@
 package org.food.ordering.system.order.service.dataaccess.order.adapter;
 
+import org.food.ordering.system.domain.valueobject.OrderId;
+import org.food.ordering.system.order.service.dataaccess.order.entity.OrderEntity;
 import org.food.ordering.system.order.service.dataaccess.order.mapper.OrderDataAccessMapper;
 import org.food.ordering.system.order.service.dataaccess.order.repository.OrderJpaRepository;
 import org.food.ordering.system.order.service.domain.entity.Order;
@@ -28,10 +30,16 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
+    public Optional<Order> findById(OrderId orderId) {
+        Optional<OrderEntity> order = orderJpaRepository.findById(orderId.getValue());
+        return order.map(orderDataAccessMapper::orderEntityToOrder);
+    }
+
+    @Override
     public Optional<Order> findByTrackingId(TrackingId trackingId) {
-        return orderJpaRepository
-                .findByTrackingId(trackingId.getValue())
-                .map(orderDataAccessMapper::orderEntityToOrder);
+        Optional<OrderEntity> byTrackingId = orderJpaRepository
+                .findByTrackingId(trackingId.getValue());
+        return byTrackingId.map(orderDataAccessMapper::orderEntityToOrder);
     }
 
 }

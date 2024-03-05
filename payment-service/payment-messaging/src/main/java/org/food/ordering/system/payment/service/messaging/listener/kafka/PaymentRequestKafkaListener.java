@@ -1,15 +1,14 @@
 package org.food.ordering.system.payment.service.messaging.listener.kafka;
 
-import com.food.ordering.system.kafka.order.avro.model.PaymentOrderStatus;
-import com.food.ordering.system.kafka.order.avro.model.PaymentRequestAvroModel;
+import org.food.ordering.system.kafka.order.avro.model.PaymentOrderStatus;
+import org.food.ordering.system.kafka.order.avro.model.PaymentRequestAvroModel;
 import lombok.extern.slf4j.Slf4j;
 import org.food.ordering.system.kafka.consumer.KafkaConsumer;
 import org.food.ordering.system.payment.service.messaging.mapper.PaymentMessagingDataMapper;
-import org.ordering.system.payment.service.domain.ports.input.message.listener.PaymentRequestMessageListener;
+import org.food.ordering.system.payment.service.domain.ports.input.message.listener.PaymentRequestMessageListener;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
-import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 

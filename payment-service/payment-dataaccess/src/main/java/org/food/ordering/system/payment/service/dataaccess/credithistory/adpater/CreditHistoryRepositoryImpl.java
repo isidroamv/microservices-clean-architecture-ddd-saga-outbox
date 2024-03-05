@@ -3,10 +3,8 @@ package org.food.ordering.system.payment.service.dataaccess.credithistory.adpate
 import org.food.ordering.system.domain.valueobject.CustomerId;
 import org.food.ordering.system.payment.service.dataaccess.credithistory.mapper.CreditHistoryDataaccessMapper;
 import org.food.ordering.system.payment.service.dataaccess.credithistory.repository.CreditHistoryJpaRepository;
-import org.food.ordering.system.payment.service.domain.entity.CreditEntry;
 import org.food.ordering.system.payment.service.domain.entity.CreditHistory;
-import org.ordering.system.payment.service.domain.ports.output.repository.CreditEntryRepository;
-import org.ordering.system.payment.service.domain.ports.output.repository.CreditHistoryRepository;
+import org.food.ordering.system.payment.service.domain.ports.output.repository.CreditHistoryRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

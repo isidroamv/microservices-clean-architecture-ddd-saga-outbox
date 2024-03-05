@@ -1,4 +1,4 @@
-package org.food.ordering.system.order.service.domain.ports;
+package org.food.ordering.system.order.service.domain;
 
 import lombok.extern.slf4j.Slf4j;
 import org.food.ordering.system.order.service.domain.dto.create.CreateOrderCommand;
@@ -24,7 +24,7 @@ class OrderApplicationServiceImpl implements OrderApplicationService {
 
     @Override
     public CreateOrderResponse createOrder(CreateOrderCommand createOrderCommand) {
-        return orderCreateCommandHandler.persisOrder(createOrderCommand);
+        return orderCreateCommandHandler.createOrder(createOrderCommand);
     }
 
     @Override

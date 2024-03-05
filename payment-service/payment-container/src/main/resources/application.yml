@@ -3,9 +3,9 @@ server:
 
 logging:
   level:
-    com.food.ordering.system: DEBUG
+    org.food.ordering.system: DEBUG
 
-order-service:
+payment-service:
   payment-request-topic-name: payment-request
   payment-response-topic-name: payment-response
 

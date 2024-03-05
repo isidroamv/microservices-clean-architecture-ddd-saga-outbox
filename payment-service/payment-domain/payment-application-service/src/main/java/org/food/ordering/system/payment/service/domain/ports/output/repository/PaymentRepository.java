@@ -1,4 +1,4 @@
-package org.ordering.system.payment.service.domain.ports.output.repository;
+package org.food.ordering.system.payment.service.domain.ports.output.repository;
 
 import org.food.ordering.system.payment.service.domain.entity.Payment;
 

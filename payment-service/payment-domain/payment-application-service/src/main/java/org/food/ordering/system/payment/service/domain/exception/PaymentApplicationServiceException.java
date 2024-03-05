@@ -1,4 +1,4 @@
-package org.ordering.system.payment.service.domain.exception;
+package org.food.ordering.system.payment.service.domain.exception;
 
 import org.food.ordering.system.domain.exception.DomainException;
 

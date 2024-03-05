@@ -1,9 +1,10 @@
 package org.food.ordering.system.order.service.messaging.listener.kafka;
 
-import com.food.ordering.system.kafka.order.avro.model.OrderApprovalStatus;
-import com.food.ordering.system.kafka.order.avro.model.RestaurantApprovalResponseAvroModel;
+import org.food.ordering.system.kafka.order.avro.model.OrderApprovalStatus;
+import org.food.ordering.system.kafka.order.avro.model.RestaurantApprovalResponseAvroModel;
 import lombok.extern.slf4j.Slf4j;
 import org.food.ordering.system.kafka.consumer.KafkaConsumer;
+import org.food.ordering.system.order.service.domain.dto.message.RestaurantApprovalResponse;
 import org.food.ordering.system.order.service.domain.ports.input.message.listener.restaurantapproval.RestaurantApprovalResponseMessageListener;
 import org.food.ordering.system.order.service.messaging.mapper.OrderMessagingDataMapper;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -46,8 +47,9 @@ public class RestaurantApprovalResponseKafkaListener implements KafkaConsumer<Re
         message.forEach(approvalResponseAvro -> {
             if (OrderApprovalStatus.APPROVED == approvalResponseAvro.getOrderApprovalStatus()) {
                 log.info("Processing order approved event for order id: {}", approvalResponseAvro.getOrderId());
-                approvalResponse.orderApproved(orderMessagingDataMapper
-                        .restaurantApprovalResponseAvroModelToRestaurantApprovalResponse(approvalResponseAvro));
+                RestaurantApprovalResponse restaurantApprovalResponse = orderMessagingDataMapper
+                        .restaurantApprovalResponseAvroModelToRestaurantApprovalResponse(approvalResponseAvro);
+                approvalResponse.orderApproved(restaurantApprovalResponse);
             } else if (OrderApprovalStatus.REJECTED == approvalResponseAvro.getOrderApprovalStatus()) {
                 log.info("Processing order rejected event for order id: {} with message: {}",
                         approvalResponseAvro.getOrderId(),

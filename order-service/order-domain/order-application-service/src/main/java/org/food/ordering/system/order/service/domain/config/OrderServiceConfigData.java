@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "order-services")
+@ConfigurationProperties(prefix = "order-service")
 public class OrderServiceConfigData {
     private String paymentRequestTopicName;
     private String paymentResponseTopicName;

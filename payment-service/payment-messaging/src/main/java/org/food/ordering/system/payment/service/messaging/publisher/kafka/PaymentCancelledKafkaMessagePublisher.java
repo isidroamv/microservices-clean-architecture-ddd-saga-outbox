@@ -1,15 +1,13 @@
 package org.food.ordering.system.payment.service.messaging.publisher.kafka;
 
-import com.food.ordering.system.kafka.order.avro.model.PaymentResponseAvroModel;
+import org.food.ordering.system.kafka.order.avro.model.PaymentResponseAvroModel;
 import lombok.extern.slf4j.Slf4j;
 import org.food.ordering.system.kafka.producer.KafkaMessageHelper;
 import org.food.ordering.system.kafka.producer.service.KafkaProducer;
 import org.food.ordering.system.payment.service.domain.event.PaymentCancelledEvent;
-import org.food.ordering.system.payment.service.domain.event.PaymentCompletedEvent;
 import org.food.ordering.system.payment.service.messaging.mapper.PaymentMessagingDataMapper;
-import org.ordering.system.payment.service.domain.config.PaymentServiceConfigData;
-import org.ordering.system.payment.service.domain.ports.output.message.publisher.PaymentCancelledMessagePublisher;
-import org.ordering.system.payment.service.domain.ports.output.message.publisher.PaymentCompletedMessagePublisher;
+import org.food.ordering.system.payment.service.domain.config.PaymentServiceConfigData;
+import org.food.ordering.system.payment.service.domain.ports.output.message.publisher.PaymentCancelledMessagePublisher;
 import org.springframework.stereotype.Component;
 
 @Slf4j

@@ -1,7 +1,7 @@
 package org.food.ordering.system.order.service.application.exepction.handler;
 
-import com.food.ordering.system.application.handler.ErrorDTO;
-import com.food.ordering.system.application.handler.GlobalExceptionHandler;
+import org.food.ordering.system.application.handler.ErrorDTO;
+import org.food.ordering.system.application.handler.GlobalExceptionHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.food.ordering.system.order.service.domain.exception.OrderDomainException;
 

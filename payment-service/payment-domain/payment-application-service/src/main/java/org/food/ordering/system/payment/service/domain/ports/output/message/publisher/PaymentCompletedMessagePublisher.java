@@ -1,4 +1,4 @@
-package org.ordering.system.payment.service.domain.ports.output.message.publisher;
+package org.food.ordering.system.payment.service.domain.ports.output.message.publisher;
 
 import org.food.ordering.system.domain.event.publisher.DomainEventPublisher;
 import org.food.ordering.system.payment.service.domain.event.PaymentCompletedEvent;
